@@ -1,0 +1,1 @@
+Yet Another Nepali Converter (YANC) is non-unicode nepali text to unicode text converter and vice-versa. Two software of similar type exist already—Rupanter by Madan Puraskar Pustakalaya and Nepali Converter by Jacob Nordfalk. But both of them lack support for lots of non-unicode font files that exist and are non-modular. We aim to fix the shortcomings.
