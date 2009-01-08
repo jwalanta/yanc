@@ -1,0 +1,39 @@
+body{
+	font-family: sans-serif;
+}
+
+.input-dev2font{
+	font-size: 24px;
+	font-family: 'Preeti';
+}
+
+.input-font2dev{
+	font-size: 24px;
+}
+
+.unicode-glyph, .font-glyph{
+	font-size: 24px;
+}
+
+.font-glyph{
+	font-family: 'Preeti';
+}
+
+
+
+input:focus{
+	background-color: #eee;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+td, th{
+	padding: 5px;
+}
+
+th{
+	color: #fff;
+	background-color: #302F33;
+}
