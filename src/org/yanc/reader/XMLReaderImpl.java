@@ -29,7 +29,7 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 	inTranslation=false, inVariation=false,
 	inDeveloper = false;
 	private String currentCharacter=null;
-	private HashMap<String, String> Font2UnicodeMap, Unicode2FontMap; 
+	private HashMap<String, String> fontToUnicodeMap, unicodeToFontMap; 
 	
 	@Override
 	public void parse() throws SAXException {
@@ -117,10 +117,10 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 		String parsedString = new String(ch, start,length);
 		if (this.inFont2Unicode){
 			if (this.inTranslation && this.inCharacter)
-				Font2UnicodeMap.put(currentCharacter, parsedString);
+				fontToUnicodeMap.put(currentCharacter, parsedString);
 		}else if (this.inUnicode2Font){
 			if (this.inCharacter && (this.inTranslation || this.inVariation))
-				Unicode2FontMap.put(currentCharacter, parsedString);
+				unicodeToFontMap.put(currentCharacter, parsedString);
 		} else if (this.inDeveloper){
 			setDeveloperName(parsedString);
 		}

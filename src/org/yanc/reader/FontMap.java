@@ -1,9 +1,14 @@
 package org.yanc.reader;
 
-import java.util.Map;
-
+/**
+ * The idea here is that FontMap will be used to store all the 
+ * Unicode/Font conversion stuff for each of the fonts
+ * @author pgautam
+ *
+ */
 public interface FontMap {
-	public Map<String,String> getMap(String fontName);
-	public String toUnicode();
-	public String toFont();
+	public void setUnicode(String str);
+	public void setFont(String str);
+	public void getUnicode(String str);
+	public void getFont(String str);
 }
