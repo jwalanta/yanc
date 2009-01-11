@@ -1,6 +1,7 @@
 package org.yanc.reader;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -24,7 +25,11 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 	 */
 	private boolean inFont2Unicode=false, 
 	inUnicode2Font=false,inCharacter=false,
-	inTranslation=false, inVariation=false;
+	inTranslation=false, inVariation=false,
+	inDeveloper = false;
+	private String currentCharacter=null;
+	private HashMap<String, String> Font2UnicodeMap, Unicode2FontMap; 
+	
 	@Override
 	public void parse() throws SAXException {
 		assert !FILENAME.equals(null); /* make sure filename is assigned */
@@ -53,32 +58,70 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 	@Override
 	public void endElement(String uri, String localName, String name)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		super.endElement(uri, localName, name);
+		
+		if (localName.equals("unicode2font")){
+			inUnicode2Font = false;
+		}else if (localName.equals("font2unicode")){
+			inFont2Unicode = false;
+		} else if (localName.equals("character")){
+			inCharacter = false;
+			currentCharacter = null;
+		} else if (localName.equals("translation")){
+			inTranslation = false;
+		} else if (localName.equals("variation")){
+			inVariation = false;
+		} else if (localName.equals("developer")){
+			inDeveloper = false;
+		} else throw new SAXException("Unknown tag");
+
 	}
 
 	@Override
 	public void startElement(String uri, String localName, String name,
-			Attributes attributes) throws SAXException {
-		if (localName.equals("unicode2Font")){
+			Attributes attributes) throws SAXException  {
+		if (localName.equals("unicode2font")){
 			inUnicode2Font = true;
-		}else if (localName.equals("Font2Unicode")){
+		}else if (localName.equals("font2unicode")){
 			inFont2Unicode = true;
-		}
+		} else if (localName.equals("character")){
+			inCharacter = true;
+			currentCharacter = attributes.getValue("code");
+		} else if (localName.equals("translation")){
+			inTranslation = true;
+		} else if (localName.equals("variation")){
+			inVariation = true;
+		} else if (localName.equals("developer")){
+			inDeveloper = true;
+		} else throw new SAXException("Unknown tag");
 		
-		super.startElement(uri, localName, name, attributes);
+		
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		// TODO Auto-generated method stub
+		
 		super.endDocument();
 	}
 
 	@Override
 	public void startDocument() throws SAXException {
-		// TODO Auto-generated method stub
+		
 		super.startDocument();
+	}
+	
+	//This method wont work .. FontMap needs to be some sort of linked list 
+	// of some sort so that new items are added to the end of it.
+	@Override
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		String parsedString = new String(ch, start,length);
+		if (this.inFont2Unicode)
+			if (this.inTranslation)
+				Font2UnicodeMap.put(currentCharacter, parsedString);
+		else if (this.inUnicode2Font)
+			if (this.inTranslation || this.inVariation)
+				
+				Unicode2FontMap.put(currentCharacter, parsedString);
+		
 	}
 	
 	
