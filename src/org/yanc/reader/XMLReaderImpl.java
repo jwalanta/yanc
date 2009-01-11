@@ -115,10 +115,10 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		String parsedString = new String(ch, start,length);
 		if (this.inFont2Unicode)
-			if (this.inTranslation)
+			if (this.inTranslation && this.inCharacter)
 				Font2UnicodeMap.put(currentCharacter, parsedString);
 		else if (this.inUnicode2Font)
-			if (this.inTranslation || this.inVariation)
+			if (this.inCharacter && (this.inTranslation || this.inVariation))
 				
 				Unicode2FontMap.put(currentCharacter, parsedString);
 		

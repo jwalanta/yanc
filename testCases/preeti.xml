@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<yanc>
+	<font name="Preeti">
+		<Developer></Developer>
+		
+		<unicode2font>
+			<!-- DEVANAGARI LETTER KA -->
+			<character code="क">
+				<translation>s</translation>
+				<variation>Sm</variation>
+			</character>
+
+			<!-- DEVANAGARI LETTER KHA -->
+			<character code="ख">
+				<translation>v</translation>
+			</character>
+			
+		</unicode2font>
+		
+		<font2unicode>
+			<!-- FONT LETTER HALF KA -->
+			<character code="S">
+				<translation>क्</translation>
+			</character>
+			
+			<!-- FONT LETTER DWA -->
+			<character code="Â">
+				<translation>द्व</translation>
+			</character>
+		</font2unicode>
+	
+	</font>
+</yanc>
