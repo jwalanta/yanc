@@ -20,6 +20,7 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 
 	private String FILENAME = null;
 	private XMLReader xr;
+	private String DeveloperName;
 	/*
 	 * This is the way I learned to do it. Looks fairly stupid but has worked so far.
 	 */
@@ -114,14 +115,24 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		String parsedString = new String(ch, start,length);
-		if (this.inFont2Unicode)
+		if (this.inFont2Unicode){
 			if (this.inTranslation && this.inCharacter)
 				Font2UnicodeMap.put(currentCharacter, parsedString);
-		else if (this.inUnicode2Font)
+		}else if (this.inUnicode2Font){
 			if (this.inCharacter && (this.inTranslation || this.inVariation))
-				
 				Unicode2FontMap.put(currentCharacter, parsedString);
+		} else if (this.inDeveloper){
+			setDeveloperName(parsedString);
+		}
 		
+	}
+
+	public void setDeveloperName(String developerName) {
+		DeveloperName = developerName;
+	}
+
+	public String getDeveloperName() {
+		return DeveloperName;
 	}
 	
 	
