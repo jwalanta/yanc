@@ -6,7 +6,7 @@ import junit.framework.TestSuite;
 public class AllTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for org.yanc.unittests");
+		TestSuite suite = new TestSuite("Test for YANC");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(XMLReaderImplTest.class);
 		//$JUnit-END$
