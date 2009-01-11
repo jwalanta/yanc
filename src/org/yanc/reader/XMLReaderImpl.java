@@ -60,8 +60,25 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 	@Override
 	public void startElement(String uri, String localName, String name,
 			Attributes attributes) throws SAXException {
-		// TODO Auto-generated method stub
+		if (localName.equals("unicode2Font")){
+			inUnicode2Font = true;
+		}else if (localName.equals("Font2Unicode")){
+			inFont2Unicode = true;
+		}
+		
 		super.startElement(uri, localName, name, attributes);
+	}
+
+	@Override
+	public void endDocument() throws SAXException {
+		// TODO Auto-generated method stub
+		super.endDocument();
+	}
+
+	@Override
+	public void startDocument() throws SAXException {
+		// TODO Auto-generated method stub
+		super.startDocument();
 	}
 	
 	
