@@ -20,7 +20,7 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 
 	private String FILENAME = null;
 	private XMLReader xr;
-	private String DeveloperName;
+	private String DeveloperName,FontName;
 	/*
 	 * This is the way I learned to do it. Looks fairly stupid but has worked so far.
 	 */
@@ -133,6 +133,14 @@ public class XMLReaderImpl extends DefaultHandler implements YancXMLReader {
 
 	public String getDeveloperName() {
 		return DeveloperName;
+	}
+
+	public String getFontName() {
+		return FontName;
+	}
+
+	public void setFontName(String fontName) {
+		FontName = fontName;
 	}
 	
 	
