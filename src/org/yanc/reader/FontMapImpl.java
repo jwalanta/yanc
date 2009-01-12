@@ -1,11 +1,21 @@
 package org.yanc.reader;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 public class FontMapImpl implements FontMap {
-
+	public Map<String, LinkedList<String>> fontToUnicodeMap, unicodeToFontMap;
+	
+	public FontMapImpl(){
+		
+	}
+	
 	@Override
-	public void getFont(String str) {
-		// TODO Auto-generated method stub
-
+	public List<String> getFont(String str) {
+		List<String> result = unicodeToFontMap.get(str);
+		return result;
+		
 	}
 
 	@Override
