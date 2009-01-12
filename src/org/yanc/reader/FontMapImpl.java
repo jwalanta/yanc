@@ -3,7 +3,7 @@ package org.yanc.reader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
+//TODO Do some error checking here. Seriously!
 public class FontMapImpl implements FontMap {
 	public Map<String, LinkedList<String>> fontToUnicodeMap, unicodeToFontMap;
 	
@@ -19,21 +19,28 @@ public class FontMapImpl implements FontMap {
 	}
 
 	@Override
-	public void getUnicode(String str) {
-		// TODO Auto-generated method stub
+	public List<String> getUnicode(String str) {
+		List<String> result = fontToUnicodeMap.get(str);
+		return result;
 
 	}
 
 	@Override
-	public void setFont(String str) {
-		// TODO Auto-generated method stub
-
+	public void setFont(String str, String font) {
+		LinkedList<String> variations;
+		variations = fontToUnicodeMap.get(str);
+		if (variations.equals(null))
+			variations = new LinkedList();
+		fontToUnicodeMap.put(str,variations);
 	}
 
 	@Override
-	public void setUnicode(String str) {
-		// TODO Auto-generated method stub
-
+	public void setUnicode(String str, String unicode) {
+		LinkedList<String> variations;
+		variations = unicodeToFontMap.get(str);
+		if (variations.equals(null))
+			variations = new LinkedList();
+		unicodeToFontMap.put(str,variations);
 	}
 
 }

@@ -9,8 +9,9 @@ import java.util.List;
  *
  */
 public interface FontMap {
-	public void setUnicode(String str);
-	public void setFont(String str);
-	public void getUnicode(String str);
+	public void setUnicode(String str,String unicode);
+	public void setFont(String str,String font);
+	/* gets the List of unicode texts/variations of the string */
+	public List<String> getUnicode(String str);
 	public List<String> getFont(String str);
 }
